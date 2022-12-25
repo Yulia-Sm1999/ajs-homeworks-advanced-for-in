@@ -1,6 +1,6 @@
 const makeArrayByList = (object, features) => {
   const givenArrayOfKeys = features;
-  const sortedArrayOfKeys = (() => {
+  const makeSortedArray = () => {
     const restKeys = [];
     for (const key in object) {
       if (!(givenArrayOfKeys.includes(key))) {
@@ -8,19 +8,20 @@ const makeArrayByList = (object, features) => {
       }
     }
     return restKeys.sort();
-  })();
+  };
+  const sortedArrayOfKeys = makeSortedArray();
 
-  const FinalArrayOfKeys = [...givenArrayOfKeys, ...sortedArrayOfKeys];
-  const FinalArrayOfEntries = [];
-  FinalArrayOfKeys.forEach((key) => {
+  const finalArrayOfKeys = [...givenArrayOfKeys, ...sortedArrayOfKeys];
+  const finalArrayOfEntries = [];
+  finalArrayOfKeys.forEach((key) => {
     const objToPush = {
       key,
       value: object[key],
     };
-    FinalArrayOfEntries.push(objToPush);
+    finalArrayOfEntries.push(objToPush);
   });
 
-  return FinalArrayOfEntries;
+  return finalArrayOfEntries;
 };
 
 export default makeArrayByList;
